@@ -1822,8 +1822,10 @@ footer {{
 """
 
 
+# This exposes 'app' at module level for gunicorn
+app = create_app()
+
 if __name__ == "__main__":
-    app = create_app()
     host = os.getenv("HOST", "127.0.0.1")
     port = int(os.getenv("PORT", "5000"))
     env = os.getenv("FLASK_ENV", os.getenv("ENV", "production")).lower()
