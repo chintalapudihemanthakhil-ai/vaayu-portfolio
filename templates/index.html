@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <meta name="theme-color" content="#0b0f19"/>
+  <meta name="description" content="Vaayu — Border Collie portfolio for brand ambassador work (food, treats, toys) + interactive games."/>
+  <title>{{ site_title }}</title>
+  <link rel="stylesheet" href="/static/css/app.css">
+</head>
+
+<body class="bg">
+  <header class="nav">
+    <div class="navInner">
+      <a class="brand" href="/">
+        <span class="dot"></span>
+        <span class="brandName">Vaayu</span>
+        <span class="brandTag">Border Collie • Brand Ambassador • Performer</span>
+      </a>
+
+      <nav class="links" aria-label="Primary">
+        <a href="#portfolio">Portfolio</a>
+        <a href="#brands">For Brands</a>
+        <a href="#games">Games</a>
+        <a href="#book">Contact</a>
+      </nav>
+
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <div class="drawer" id="drawer" aria-hidden="true">
+      <div class="drawerPanel">
+        <div class="drawerTop">
+          <div class="drawerTitle">Menu</div>
+          <button class="drawerClose" id="drawerClose" aria-label="Close menu">✕</button>
+        </div>
+        <a class="drawerLink" href="#portfolio">Portfolio</a>
+        <a class="drawerLink" href="#brands">For Brands</a>
+        <a class="drawerLink" href="#games">Games</a>
+        <a class="drawerLink" href="#book">Contact</a>
+      </div>
+      <div class="drawerBackdrop" id="drawerBackdrop"></div>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="hero">
+      <div class="heroBg">
+        {% if hero_image %}
+          <img class="heroImg" src="/static/images/{{ hero_image }}" alt="Vaayu hero">
+        {% else %}
+          <div class="heroFallback"></div>
+        {% endif %}
+        <div class="heroFallback"></div>
+      </div>
+
+      <div class="heroContent">
+        <div class="kicker">✨ Brand Ambassador Ready • Food / Treats / Toys</div>
+        <h1 class="heroTitle">Vaayu</h1>
+        <p class="heroSub">
+          A photogenic, intelligent Border Collie with an expressive face, crisp coat contrast,
+          and trained tricks that look amazing on camera — perfect for pet food, treat and toy campaigns.
+        </p>
+
+        <div class="heroCtas">
+          <a class="btn" href="#book">Work With Vaayu</a>
+          <a class="btn ghost" href="#games">Play the Games</a>
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <div class="statNum">A+</div>
+            <div class="statLabel">Trainability</div>
+          </div>
+          <div class="stat">
+            <div class="statNum">3</div>
+            <div class="statLabel">Interactive games</div>
+          </div>
+          <div class="stat">
+            <div class="statNum">∞</div>
+            <div class="statLabel">Cuteness</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="portfolio">
+      <div class="sectionHead">
+        <h2>Portfolio</h2>
+        <p class="muted">
+          Add photos by copying them into <code>source_images/</code> and reloading the page.
+          They auto-sync to <code>static/images/</code>.
+        </p>
+      </div>
+
+      <div class="grid" id="galleryGrid">
+        {% if images|length == 0 %}
+          <div class="cardWide">
+            <p class="muted">
+              No images found yet. Copy your photos into <code>source_images/</code> and refresh.
+            </p>
+          </div>
+        {% else %}
+          {% for img in images %}
+            <figure class="card">
+              <img class="cardImg" data-full="/static/images/{{ img }}" src="/static/images/{{ img }}" alt="Vaayu photo {{ loop.index }}">
+              <figcaption class="cap">
+                <div class="capTitle">{{ img }}</div>
+                <div class="capSub">Click to view</div>
+              </figcaption>
+            </figure>
+          {% endfor %}
+        {% endif %}
+      </div>
+    </section>
+
+    <section class="section" id="brands">
+      <div class="sectionHead">
+        <h2>For Brands</h2>
+        <p class="muted">A high-level pitch designed for pet food, treats, toys, and lifestyle campaigns.</p>
+      </div>
+
+      <div class="pillGrid">
+        <div class="pillCard">
+          <div class="pillTitle">On-camera behavior</div>
+          <div class="pillBody">Engaged expression, holds position, resets quickly, responds to cues</div>
+        </div>
+        <div class="pillCard">
+          <div class="pillTitle">Trick-ready</div>
+          <div class="pillBody">Spin, fetch, stay/hold (great for “before/after”, “challenge”, UGC ads)</div>
+        </div>
+        <div class="pillCard">
+          <div class="pillTitle">Product fit</div>
+          <div class="pillBody">Treat puzzles, chew toys, tug toys, food bowls, grooming, outdoor gear</div>
+        </div>
+        <div class="pillCard">
+          <div class="pillTitle">Visual appeal</div>
+          <div class="pillBody">Crisp black/white contrast, fluffy coat, expressive eyes, athletic stance</div>
+        </div>
+      </div>
+
+      <div class="cardWide" style="margin-top:14px">
+        <div class="muted">
+          Tip: For brand emails, share this link too:
+          <code>/media-kit</code> (JSON media kit for quick review).
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="games">
+      <div class="sectionHead">
+        <h2>Interactive Games</h2>
+        <p class="muted">Mini-games that show Vaayu’s real “ad-ready” skills — clean, smooth, fun.</p>
+      </div>
+
+      <div class="games">
+        <div class="game">
+          <div class="gameHead">
+            <h3>Spin Trick 🌀</h3>
+            <p class="muted">Click Spin (or click the Vaayu image) to trigger a smooth rotation.</p>
+          </div>
+          <div class="gameBody">
+            <div class="row">
+              <button class="btn small" id="spinBtn">Spin</button>
+              <div class="scorePill" id="spinCount">Spins: 0</div>
+            </div>
+            <div class="stage">
+              <img id="spinImg" class="vaayuStageImg" src="{% if hero_image %}/static/images/{{ hero_image }}{% else %}{{ '' }}{% endif %}" alt="Vaayu spin">
+              <div class="stageGlow"></div>
+              {% if not hero_image %}
+                <div class="center muted">Add images to <code>source_images/</code> and refresh.</div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <div class="game">
+          <div class="gameHead">
+            <h3>Fetch 🎾</h3>
+            <p class="muted">Press Throw. Ball arcs. Vaayu runs. Score increases.</p>
+          </div>
+          <div class="gameBody">
+            <div class="row">
+              <button class="btn small" id="throwBtn">Throw Ball</button>
+              <button class="btn small ghost" id="resetFetchBtn">Reset</button>
+              <div class="scorePill" id="fetchScore">Fetch: 0</div>
+            </div>
+
+            <div class="fetchArena" id="fetchArena" aria-label="Fetch Arena">
+              <div class="ground"></div>
+              <div class="ball" id="ball" aria-label="Ball">🎾</div>
+              <div class="dog" id="dog" aria-label="Vaayu">🐶</div>
+              <div class="flag" id="flag">🏁</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="game">
+          <div class="gameHead">
+            <h3>Herding 🐑</h3>
+            <p class="muted">Use <kbd>WASD</kbd> or arrow keys to move Vaayu (blue). Herd sheep into the pen.</p>
+          </div>
+          <div class="gameBody">
+            <div class="row">
+              <button class="btn small" id="herdStartBtn">Start</button>
+              <button class="btn small ghost" id="herdResetBtn">Reset</button>
+              <div class="scorePill" id="herdScore">In Pen: 0</div>
+            </div>
+            <canvas class="canvas" id="herdCanvas" width="900" height="420"></canvas>
+            <div class="tiny muted">Goal: herd 5 sheep into the pen. Guide gently 😄</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="book">
+      <div class="sectionHead">
+        <h2>Contact / Brand Inquiry</h2>
+        <p class="muted">Submissions are saved in SQLite. Use Admin page to view inquiries.</p>
+      </div>
+
+      <div class="cardWide">
+        <form id="contactForm" class="form" autocomplete="on">
+          <div class="formRow">
+            <label>
+              <span>Name</span>
+              <input name="name" required minlength="2" placeholder="Your name">
+            </label>
+            <label>
+              <span>Email</span>
+              <input name="email" type="email" required placeholder="you@brand.com">
+            </label>
+          </div>
+
+          <label>
+            <span>Purpose</span>
+            <select name="purpose">
+              <option>Brand Inquiry</option>
+              <option>Food / Treat Campaign</option>
+              <option>Toy / Accessory Campaign</option>
+              <option>UGC / Collaboration</option>
+              <option>Other</option>
+            </select>
+          </label>
+
+          <label>
+            <span>Message</span>
+            <textarea name="message" required minlength="10" maxlength="2500" placeholder="Tell us about the campaign, dates, deliverables, and usage rights…"></textarea>
+          </label>
+
+          <div class="row">
+            <button class="btn" type="submit" id="contactSubmit">Send</button>
+            <div class="toast" id="toast" role="status" aria-live="polite"></div>
+          </div>
+        </form>
+
+        <div class="note">
+          Admin: <code>/admin?token=YOUR_ADMIN_TOKEN</code> (set <code>ADMIN_TOKEN</code> in <code>.env</code>).
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="modalBackdrop" id="modalBackdrop"></div>
+    <div class="modalPanel" role="dialog" aria-modal="true" aria-label="Image viewer">
+      <button class="modalClose" id="modalClose" aria-label="Close">✕</button>
+      <img class="modalImg" id="modalImg" alt="Vaayu image">
+      <div class="modalHint muted">Tip: press Esc to close</div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footerInner">
+      <div>
+        <div class="footerTitle">Vaayu</div>
+        <div class="muted">Brand-ready • Camera-confident • Smart & gentle</div>
+      </div>
+      <div class="row">
+        <a class="btn small" href="#book">Contact</a>
+        <a class="btn small ghost" href="#games">Play</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/static/js/main.js"></script>
+  <script src="/static/js/gallery.js"></script>
+  <script src="/static/js/games.js"></script>
+  <script src="/static/js/contact.js"></script>
+</body>
+</html>

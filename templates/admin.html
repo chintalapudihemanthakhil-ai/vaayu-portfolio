@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>{{ site_title }} — Admin</title>
+  <link rel="stylesheet" href="/static/css/app.css">
+</head>
+<body class="bg">
+  <header class="nav">
+    <div class="navInner">
+      <a class="brand" href="/">
+        <span class="dot"></span>
+        <span class="brandName">Vaayu</span>
+        <span class="brandTag">Admin • Inquiries</span>
+      </a>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="section">
+      <div class="sectionHead">
+        <h2>Inquiries</h2>
+        <p class="muted">Latest 200 submissions stored in SQLite (<code>instance/vaayu.db</code>).</p>
+      </div>
+
+      <div class="cardWide" style="overflow:auto">
+        {% if inquiries|length == 0 %}
+          <p class="muted">No inquiries yet.</p>
+        {% else %}
+          <table style="width:100%; border-collapse:collapse">
+            <thead>
+              <tr style="text-align:left">
+                <th style="padding:10px; border-bottom:1px solid rgba(255,255,255,.12)">Time</th>
+                <th style="padding:10px; border-bottom:1px solid rgba(255,255,255,.12)">Name</th>
+                <th style="padding:10px; border-bottom:1px solid rgba(255,255,255,.12)">Email</th>
+                <th style="padding:10px; border-bottom:1px solid rgba(255,255,255,.12)">Purpose</th>
+                <th style="padding:10px; border-bottom:1px solid rgba(255,255,255,.12)">Message</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for r in inquiries %}
+                <tr>
+                  <td style="padding:10px; border-bottom:1px solid rgba(255,255,255,.08)">{{ r.created_at }}</td>
+                  <td style="padding:10px; border-bottom:1px solid rgba(255,255,255,.08)">{{ r.name }}</td>
+                  <td style="padding:10px; border-bottom:1px solid rgba(255,255,255,.08)">{{ r.email }}</td>
+                  <td style="padding:10px; border-bottom:1px solid rgba(255,255,255,.08)">{{ r.purpose }}</td>
+                  <td style="padding:10px; border-bottom:1px solid rgba(255,255,255,.08)">{{ r.message }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        {% endif %}
+      </div>
+    </section>
+  </main>
+</body>
+</html>
